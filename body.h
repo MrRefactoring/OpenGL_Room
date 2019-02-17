@@ -989,12 +989,12 @@ void pgs() {
 }
 
 static void FloorShadowObj(void) {
-    drwatableTop();
-    Firstleg();
-    secondleg();
-    thirdleg();
-    fourthleg();
-    dglasscube();
+    drawTableTop();
+    firstLeg();
+    secondLeg();
+    thirdLeg();
+    fourthLeg();
+    dGlassCube();
     bk1();
     bk2();
     bk3();
@@ -1126,7 +1126,7 @@ void glasscube() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
-    dglasscube();
+    dGlassCube();
     glDisable(GL_BLEND);
     glDisable(GL_TEXTURE_2D);
 
@@ -1139,11 +1139,11 @@ void drawTable() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    drwatableTop();
-    Firstleg();
-    secondleg();
-    thirdleg();
-    fourthleg();
+    drawTableTop();
+    firstLeg();
+    secondLeg();
+    thirdLeg();
+    fourthLeg();
 
     glDisable(GL_TEXTURE_2D);
 }
