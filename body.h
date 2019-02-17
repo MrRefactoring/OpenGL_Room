@@ -28,8 +28,7 @@ float min = 0.0f;
 float max = 1.0f;
 float wll = 0.01f;
 
-void drwatableTop()
-{
+void drawTableTop() {
     glPushMatrix(); // 1 set where to start the current object transformation
     glTranslatef(0.0f, -2.0f, 0.0f); // move downwards to lie on the floor
 
@@ -94,8 +93,8 @@ void drwatableTop()
     glEnd();
     glPopMatrix();
 }
-void Firstleg()
-{
+
+void firstLeg() {
     glPushMatrix(); // 1 set where to start the current object transformation
     glTranslatef(0.0f, -2.0f, 0.0f); // move downwards to lie on the floor
 
@@ -144,8 +143,8 @@ void Firstleg()
     glEnd();
     glPopMatrix();
 }
-void secondleg()
-{
+
+void secondLeg() {
     glPushMatrix(); // 1 set where to start the current object transformation
     glTranslatef(0.0f, -2.0f, 0.0f); // move downwards to lie on the floor
 
@@ -195,8 +194,7 @@ void secondleg()
     glPopMatrix();
 }
 
-void thirdleg()
-{
+void thirdLeg() {
     glPushMatrix(); // 1 set where to start the current object transformation
     glTranslatef(0.0f, -2.0f, 0.0f); // move downwards to lie on the floor
 
@@ -244,8 +242,8 @@ void thirdleg()
     glEnd();
     glPopMatrix();
 }
-void fourthleg()
-{
+
+void fourthLeg() {
     glPushMatrix(); // 1 set where to start the current object transformation
     glTranslatef(0.0f, -2.0f, 0.0f); // move downwards to lie on the floor
 
@@ -293,8 +291,8 @@ void fourthleg()
     glEnd();
     glPopMatrix();
 }
-void dglasscube()
-{
+
+void dGlassCube() {
     glPushMatrix();
 
     glTranslatef(0.3f, 0.0f, -2.3f);
@@ -359,8 +357,7 @@ void dglasscube()
     glPopMatrix();
 }
 
-void bk1()
-{
+void bk1() {
     glPushMatrix(); // 2
     glTranslatef(-1.0f, -2.0f, 2.0f); // move to lie on the left corner of the table
     glRotatef(ang1, 0.0f, 1.0f, 0.0f);
@@ -532,8 +529,8 @@ void bk1()
     glEnd();
     glPopMatrix();//5
 }
-void bk2()
-{
+
+void bk2() {
     glPushMatrix(); // 2
     glTranslatef(-1.0f, -2.0f + B2h, 2.0f); // move to lie on the left corner of the table
     glRotatef(ang2, 0.0f, 1.0f, 0.0f);
@@ -705,8 +702,8 @@ void bk2()
     glEnd();
     glPopMatrix(); // 5
 }
-void bk3()
-{
+
+void bk3() {
     glPushMatrix(); // 2
     glTranslatef(-1.0f, -2.0f + B3h, 2.0f); // move to lie on the left corner of the table
     glRotatef(ang3, 0.0f, 1.0f, 0.0f);
@@ -879,8 +876,7 @@ void bk3()
     glPopMatrix();//5
 }
 
-void pgs()
-{
+void pgs() {
     /////////pages of book 1
     glPushMatrix(); //4
     glTranslatef(-1.0f, -2.0f + Bt, 2.0f);// move to lie between covers
@@ -992,8 +988,7 @@ void pgs()
     glPopMatrix();  //12
 }
 
-static void FloorShadowObj(void)
-{
+static void FloorShadowObj(void) {
     drwatableTop();
     Firstleg();
     secondleg();
@@ -1015,8 +1010,7 @@ static GLfloat floorVertices[4][3] = {
 
 //////////////////////////
 
-static void drawFloor(void)
-{
+static void drawFloor(void) {
     glBegin(GL_QUADS);
     glNormal3f(0, 1, 0);
     glColor3f(0.90f, 0.90f, 0.90f);
@@ -1029,8 +1023,8 @@ static void drawFloor(void)
 
 static GLfloat floorPlane[4];
 static GLfloat floorShadow[4][4];
-void drawSky()
-{
+
+void drawSky() {
     glEnable(GL_TEXTURE_2D);//enabling texture
 
     glBindTexture(GL_TEXTURE_2D, _textureId11);
@@ -1059,8 +1053,7 @@ void drawSky()
 
 }
 
-void drawWall() //enclosing the walls of the room
-{
+void drawWall() { //enclosing the walls of the room{
     drawSky();
     glEnable(GL_TEXTURE_2D);//enabling texture
 
@@ -1092,14 +1085,14 @@ void drawWall() //enclosing the walls of the room
     glEnd();
     glDisable(GL_TEXTURE_2D);
 }
-void drawWallM() //enclosing the walls of the room
-{
+
+void drawWallM() { // enclosing the walls of the room
     glEnable(GL_TEXTURE_2D);//enabling texture
 
     glBindTexture(GL_TEXTURE_2D, _textureId10);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBegin(GL_QUADS);//normals pointing outwards
+    glBegin(GL_QUADS); // normals pointing outwards
     glNormal3f(0, 1, 0);
     ////left
     glTexCoord2f(0, 0);
@@ -1196,8 +1189,7 @@ void book1top()
     glPopMatrix();
 }
 
-void book2()
-{
+void book2() {
     glEnable(GL_TEXTURE_2D);//enabling texture
 
     glBindTexture(GL_TEXTURE_2D, _textureId5);
@@ -1209,9 +1201,7 @@ void book2()
     glDisable(GL_TEXTURE_2D);
 }
 
-void book2top()
-
-{
+void book2top() {
     glEnable(GL_TEXTURE_2D);//enabling texture
 
     glBindTexture(GL_TEXTURE_2D, _textureId4);
@@ -1238,9 +1228,7 @@ void book2top()
     glPopMatrix();
 }
 
-void book3()
-
-{
+void book3() {
     glEnable(GL_TEXTURE_2D);//enabling texture
 
     glBindTexture(GL_TEXTURE_2D, _textureId7);
@@ -1252,10 +1240,7 @@ void book3()
     glDisable(GL_TEXTURE_2D);
 }
 
-void book3top()
-
-
-{
+void book3top() {
     glEnable(GL_TEXTURE_2D);//enabling texture
 
     glBindTexture(GL_TEXTURE_2D, _textureId6);
@@ -1291,5 +1276,4 @@ void pages() { //textures must be added
     glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
     pgs();
     glDisable(GL_TEXTURE_2D);
-
 }

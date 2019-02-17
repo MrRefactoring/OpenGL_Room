@@ -12,8 +12,7 @@ void handleSpecialKeypress(
 		int y
 ) {
 	float fraction = 0.8f;
-	switch (key)
-	{
+	switch (key) {
 		//addition of other keys for movement of camera>> might need for project
 		case GLUT_KEY_LEFT://charachter A
 			angle -= 0.1f;//shift angle by 0.1f in opposite angle then it looks like we are actually looking at positive
