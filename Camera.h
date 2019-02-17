@@ -5,12 +5,12 @@ float cx = -1.0f, cy = 1.0f, z = 13.0f; //XZ position of camera
 float _angle = 0.0f;
 float _cameraAngle = -30.0f;
 
-
-
 //for camera() rotation
-void handleSpecialKeypress(int key,//key 2 be pressed
-						   int x, int y)
-{
+void handleSpecialKeypress(
+		int key, // key 2 be pressed
+		int x,
+		int y
+) {
 	float fraction = 0.8f;
 	switch (key)
 	{

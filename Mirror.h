@@ -1,5 +1,5 @@
 void drawObjectsforMirror() {
-	drawtable();
+	drawTable();
 	book1();
 	book1top();
 	book2();

@@ -35,9 +35,9 @@ GLuint _textureId11;
 void initRender() {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_COLOR_MATERIAL);
-    glEnable(GL_BLEND);//turns on alpha blending
+    glEnable(GL_BLEND); // turns on alpha blending
     glEnable(GL_NORMALIZE);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);// to see the blending
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // to see the blending
 
     Image* image1 = loadBMP("assets/cake.bmp");
     _textureId1 = loadTexture(image1);
@@ -73,7 +73,7 @@ void initRender() {
     _textureId11 = loadTexture(image11);
     delete image11;
 
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);//clears background colour and put alpha value as 1
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // clears background colour and put alpha value as 1
 }
 
 Image::Image(char* ps, int w, int h) : pixels(ps), width(w), height(h) {
@@ -85,12 +85,14 @@ Image::~Image() {
 }
 
 namespace {
-    //Converts a four-character array to an integer, using little-endian form
+    // Converts a four-character array to an integer, using little-endian form
     int toInt(const char* bytes) {
-        return (int)(((unsigned char)bytes[3] << 24) |
-                     ((unsigned char)bytes[2] << 16) |
-                     ((unsigned char)bytes[1] << 8) |
-                     (unsigned char)bytes[0]);
+        return (int) (
+                ((unsigned char) bytes[3] << 24) |
+                ((unsigned char) bytes[2] << 16) |
+                ((unsigned char) bytes[1] << 8) |
+                (unsigned char) bytes[0]
+        );
     }
 
     //Converts a two-character array to a short, using little-endian form

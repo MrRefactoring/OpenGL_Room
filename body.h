@@ -1139,7 +1139,7 @@ void glasscube() {
 
 }
 
-void drawtable() {
+void drawTable() {
     glEnable(GL_TEXTURE_2D);//enabling texture
 
     glBindTexture(GL_TEXTURE_2D, _textureId3);

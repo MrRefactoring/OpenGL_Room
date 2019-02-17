@@ -43,11 +43,12 @@ void handleResize(int w, int h) {
             45.0, //camera angle
             (double)w / (double)h, //the width to height ratio
             1.0, //near z clipping coordinate
-            200.0); // the far z clipping coordinate
+            200.0
+    ); // the far z clipping coordinate
 }
 
 void drawAllObjects() {
-    drawtable(); //draw table
+    drawTable(); //draw table
     book1();
     book1top();
     book2();
@@ -61,12 +62,12 @@ void drawAllObjects() {
 
 
 void drawScene() {
-    //clear informatoin from last draw
+    // clear information from last draw
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-    glMatrixMode(GL_MODELVIEW); //switch the drawing perspective
-    glLoadIdentity(); //Reset the drawing perspective
+    glMatrixMode(GL_MODELVIEW); // switch the drawing perspective
+    glLoadIdentity(); // Reset the drawing perspective
 
-    //Camera (View port)
+    // Camera (View port)
     gluLookAt(cx, cy, z, cx + lx, 1.0f, z + lz, 0.0f, 1.0f, 0.0f);
     drawMirrors();
     drawWall();
@@ -218,8 +219,7 @@ void drawScene() {
     glutSwapBuffers(); //sends the 3D scene to screen
 }
 
-static void controlLights(int value)
-{
+static void controlLights(int value) {
     switch (value) {
         case M_NONE:
             return;
@@ -266,8 +266,7 @@ static void controlLights(int value)
     glutPostRedisplay();
 }
 
-static void visible(int vis)
-{
+static void visible(int vis) {
     if (vis == GLUT_VISIBLE) {
         if (animation)
             glutIdleFunc(idle);
