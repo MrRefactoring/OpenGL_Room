@@ -17,9 +17,18 @@
 #endif
 
 enum {
-	M_NONE, M_MOTION, M_LIGHT, M_SHADOWS, M_REFLECTION, M_FloorShadowObj,
-	M_STENCIL_REFLECTION, M_STENCIL_SHADOW, M_OFFSET_SHADOW,
-	M_POSITIONAL, M_DIRECTIONAL, M_PERFORMANCE
+	M_NONE,
+	M_MOTION,
+	M_LIGHT,
+	M_SHADOWS,
+	M_REFLECTION,
+	M_FloorShadowObj,
+	M_STENCIL_REFLECTION,
+	M_STENCIL_SHADOW,
+	M_OFFSET_SHADOW,
+	M_POSITIONAL,
+	M_DIRECTIONAL,
+	M_PERFORMANCE
 };
 
 using namespace std;
@@ -28,20 +37,16 @@ void handleResize(int w, int h) {
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
 
-
 	glLoadIdentity();
 	gluPerspective(
-		45.0,//camera angle
-		(double)w / (double)h,//the width to height ratio
-		1.0, //near z clipping coordinate
-		200.0);// the far z clipping coordinate
-
-
+			45.0, //camera angle
+			(double)w / (double)h, //the width to height ratio
+			1.0, //near z clipping coordinate
+			200.0); // the far z clipping coordinate
 }
 
 void drawAllObjects() {
-
-	drawtable();//draw table
+	drawtable(); //draw table
 	book1();
 	book1top();
 	book2();
@@ -51,7 +56,6 @@ void drawAllObjects() {
 	pages();
 	glasscube();
 	drawWallM();
-
 }
 
 
@@ -59,7 +63,7 @@ void drawScene() {
 	//clear informatoin from last draw
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW); //switch the drawing perspective
-	glLoadIdentity();//Reset the drawing perspective
+	glLoadIdentity(); //Reset the drawing perspective
 
 	//Camera (View port)
 	gluLookAt(cx, cy, z, cx + lx, 1.0f, z + lz, 0.0f, 1.0f, 0.0f);
@@ -70,7 +74,7 @@ void drawScene() {
 
 	drawAllObjects();
 
-	glCullFace(GL_BACK);// draws back afterwards
+	glCullFace(GL_BACK); // draws back afterwards
 
 	drawAllObjects();
 
@@ -139,18 +143,18 @@ void drawScene() {
 		that it does not depth buffer alias with the floor. */
 		if (offsetShadow) {
 			switch (polygonOffsetVersion) {
-			case EXTENSION:
+				case EXTENSION:
 #ifdef GL_EXT_polygon_offset
-				glEnable(GL_POLYGON_OFFSET_EXT);
+					glEnable(GL_POLYGON_OFFSET_EXT);
 				break;
 #endif
 #ifdef GL_VERSION_1_1
-			case ONE_DOT_ONE:
+					case ONE_DOT_ONE:
 				glEnable(GL_POLYGON_OFFSET_FILL);
 				break;
 #endif
-			case MISSING:
-				break;
+				case MISSING:
+					break;
 			}
 		}
 
@@ -158,7 +162,7 @@ void drawScene() {
 		floor appareance is. */
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glDisable(GL_LIGHTING);  /* Force the 50% black. */
+		glDisable(GL_LIGHTING);  // Force the 50% black.
 		glColor4f(0.0, 0.0, 0.0, 0.5);
 
 		glPushMatrix();
@@ -173,17 +177,17 @@ void drawScene() {
 		if (offsetShadow) {
 			switch (polygonOffsetVersion) {
 #ifdef GL_EXT_polygon_offset
-			case EXTENSION:
+				case EXTENSION:
 				glDisable(GL_POLYGON_OFFSET_EXT);
 				break;
 #endif
 #ifdef GL_VERSION_1_1
-			case ONE_DOT_ONE:
+				case ONE_DOT_ONE:
 				glDisable(GL_POLYGON_OFFSET_FILL);
 				break;
 #endif
-			case MISSING:
-				break;
+				case MISSING:
+					break;
 			}
 		}
 		if (stencilShadow) {
@@ -210,53 +214,53 @@ void drawScene() {
 		printf("Speed %.3g frames/sec (%d ms)\n", 100.0 / (end - start), end - start);
 	}
 
-	glutSwapBuffers();//sends the 3D scene to screen
+	glutSwapBuffers(); //sends the 3D scene to screen
 }
 
 static void controlLights(int value)
 {
 	switch (value) {
-	case M_NONE:
-		return;
-	case M_MOTION:
-		animation = 1 - animation;
-		if (animation) {
-			glutIdleFunc(idle);
-		}
-		else {
-			glutIdleFunc(NULL);
-		}
-		break;
-	case M_LIGHT:
-		lightSwitch = !lightSwitch;
-		if (lightSwitch) {
-			glEnable(GL_LIGHT0);
-		}
-		else {
-			glDisable(GL_LIGHT0);
-		}
-		break;
+		case M_NONE:
+			return;
+		case M_MOTION:
+			animation = 1 - animation;
+			if (animation) {
+				glutIdleFunc(idle);
+			}
+			else {
+				glutIdleFunc(NULL);
+			}
+			break;
+		case M_LIGHT:
+			lightSwitch = !lightSwitch;
+			if (lightSwitch) {
+				glEnable(GL_LIGHT0);
+			}
+			else {
+				glDisable(GL_LIGHT0);
+			}
+			break;
 
-	case M_SHADOWS:
-		renderShadow = 1 - renderShadow;
-		break;
+		case M_SHADOWS:
+			renderShadow = 1 - renderShadow;
+			break;
 
-	case M_FloorShadowObj:
-		FloorShadow = 1 - FloorShadow;
-		break;
+		case M_FloorShadowObj:
+			FloorShadow = 1 - FloorShadow;
+			break;
 
-	case M_STENCIL_SHADOW:
-		stencilShadow = 1 - stencilShadow;
-		break;
-	case M_OFFSET_SHADOW:
-		offsetShadow = 1 - offsetShadow;
-		break;
-	case M_POSITIONAL:
-		directionalLight = 0;
-		break;
-	case M_DIRECTIONAL:
-		directionalLight = 1;
-		break;
+		case M_STENCIL_SHADOW:
+			stencilShadow = 1 - stencilShadow;
+			break;
+		case M_OFFSET_SHADOW:
+			offsetShadow = 1 - offsetShadow;
+			break;
+		case M_POSITIONAL:
+			directionalLight = 0;
+			break;
+		case M_DIRECTIONAL:
+			directionalLight = 1;
+			break;
 	}
 	glutPostRedisplay();
 }
@@ -277,50 +281,49 @@ void handleKeypress(unsigned char key, int x, int y) {
 	float fraction = 0.1f; //amount to be changed per press action
 	switch (key)
 	{
-	case 27: //escape key
-		exit(0); //exit the process
-	case 'q':
-		cx = -15.0f;
-		cy = 8.0f;
-		z = 15.0f;
-		lx = +15.0f;
-		lz = -15.0f;
-		drawScene();
-		break;
-	case 'w':
-		cx = 15.0f;
-		cy = 0.0f;
-		z = 15.0f;
-		lx = -15.0f;
-		lz = -15.0f;
-		drawScene();
-		break;
-	case 'e':
-		cx = 15.0f;
-		cy = 8.0f;
-		z = -15.0f;
-		lx = -15.0f;
-		lz = 15.0f;
-		drawScene();
-		break;
-	case 'r':
-		cx = -1.0f;
-		cy = 1.0f;
-		z = 13.0f;
-		lx = 0.0f;
-		lz = -1.0f;
-		drawScene();
-		break;
-	default:
-		cx = -1.0f;
-		cy = 1.0f;
-		z = 13.0f;
-		lx = 0.0f;
-		lz = -1.0f;
-		drawScene();
-		break;
+		case 27: //escape key
+			exit(0); //exit the process
+		case 'q':
+			cx = -15.0f;
+			cy = 8.0f;
+			z = 15.0f;
+			lx = +15.0f;
+			lz = -15.0f;
+			drawScene();
+			break;
+		case 'w':
+			cx = 15.0f;
+			cy = 0.0f;
+			z = 15.0f;
+			lx = -15.0f;
+			lz = -15.0f;
+			drawScene();
+			break;
+		case 'e':
+			cx = 15.0f;
+			cy = 8.0f;
+			z = -15.0f;
+			lx = -15.0f;
+			lz = 15.0f;
+			drawScene();
+			break;
+		case 'r':
+			cx = -1.0f;
+			cy = 1.0f;
+			z = 13.0f;
+			lx = 0.0f;
+			lz = -1.0f;
+			drawScene();
+			break;
+		default:
+			cx = -1.0f;
+			cy = 1.0f;
+			z = 13.0f;
+			lx = 0.0f;
+			lz = -1.0f;
+			drawScene();
+			break;
 	}
-
 }
 
 static int supportsOneDotOne(void) {
@@ -336,12 +339,11 @@ static int supportsOneDotOne(void) {
 int main(int argc, char* argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_STENCIL | GLUT_MULTISAMPLE);
-	glutInitWindowSize(600, 600);//size of window
+	glutInitWindowSize(600, 600); //size of window
 	glutCreateWindow("GROUP 5-SCENE 3");
-	initRender();//initialize rendering 
+	initRender(); //initialize rendering 
 
 	glutDisplayFunc(drawScene);
-
 
 	glutVisibilityFunc(visible);
 
@@ -363,7 +365,6 @@ int main(int argc, char* argv[]) {
 
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
-
 #ifdef GL_VERSION_1_1
 	if (supportsOneDotOne() && !forceExtension) {
 		polygonOffsetVersion = ONE_DOT_ONE;
@@ -372,15 +373,18 @@ int main(int argc, char* argv[]) {
 	else
 #endif
 
-		glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 
 	glLineWidth(3.0);
 
 	glMatrixMode(GL_PROJECTION);
-	gluPerspective( /* field of view in degree */ 40.0f,
-		/* aspect ratio */ 1.0f,
-		/* Z near */ 20.0f, /* Z far */ 100.0f);
+	gluPerspective(
+			40.0f, // field of view in degree
+			1.0f, // aspect ratio
+			20.0f, // Z near
+			100.0f // Z far
+	);
 	glMatrixMode(GL_MODELVIEW);
 
 	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
@@ -392,7 +396,7 @@ int main(int argc, char* argv[]) {
 
 	findPlane(floorPlane, floorVertices[1], floorVertices[2], floorVertices[3]);
 
-	glutSpecialFunc(handleSpecialKeypress);// camera rotation
+	glutSpecialFunc(handleSpecialKeypress); // camera rotation
 	glutReshapeFunc(handleResize);
 	glutTimerFunc(25, update, 0);
 

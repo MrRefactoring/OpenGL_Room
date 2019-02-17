@@ -1,5 +1,4 @@
 void drawObjectsforMirror() {
-
 	drawtable();
 	book1();
 	book1top();
@@ -11,7 +10,6 @@ void drawObjectsforMirror() {
 	glasscube();
 	drawWallM();
 	drawFloor();
-
 }
 
 void drawMirrors() {
@@ -68,8 +66,6 @@ void drawMirrors() {
 
 	//glEnd;
 
-
-
 	// reenable drawing to color buffer
 	glDrawBuffer((GLenum)buffers);
 
@@ -110,10 +106,8 @@ void drawMirrors() {
 	//}
 	////////////////////////////////////////////////////////////
 
-
 	glDisable(GL_STENCIL_TEST);	// disable the stencil buffer
 	glDrawBuffer(GL_NONE);	// disable drawing to the color buffer
 
 	glDrawBuffer((GLenum)buffers);
-
 }

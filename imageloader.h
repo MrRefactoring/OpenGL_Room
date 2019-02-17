@@ -1,4 +1,3 @@
-
 #ifndef IMAGE_LOADER_H_INCLUDED
 #define IMAGE_LOADER_H_INCLUDED
 
@@ -16,6 +15,4 @@ public:
 
 //Reads a bitmap image from file.
 Image* loadBMP(const char* filename);
-
-
 #endif

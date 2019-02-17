@@ -1,4 +1,3 @@
-
 /* Variable controlling various rendering modes. */
 static int stencilShadow = 1, offsetShadow = 1;
 static int renderShadow = 1, FloorShadow = 1;
@@ -7,14 +6,10 @@ static int reportSpeed = 0;
 
 static int forceExtension = 0;
 
-
-
 enum {
 	MISSING, EXTENSION, ONE_DOT_ONE
 };
 int polygonOffsetVersion;
-
-
 
 enum {
 	X, Y, Z, W
@@ -30,9 +25,9 @@ void shadowMatrix(GLfloat shadowMat[4][4], GLfloat groundplane[4], GLfloat light
 
 	/* Find dot product between light position vector and ground plane normal. */
 	dot = groundplane[X] * lightpos[X] +
-		groundplane[Y] * lightpos[Y] +
-		groundplane[Z] * lightpos[Z] +
-		groundplane[W] * lightpos[W];
+		  groundplane[Y] * lightpos[Y] +
+		  groundplane[Z] * lightpos[Z] +
+		  groundplane[W] * lightpos[W];
 
 	shadowMat[0][0] = dot - lightpos[X] * groundplane[X];
 	shadowMat[1][0] = 0.f - lightpos[X] * groundplane[Y];

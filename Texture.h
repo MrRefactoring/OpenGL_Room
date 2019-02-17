@@ -7,13 +7,13 @@ GLuint loadTexture(Image* image) {
 	glGenTextures(12, textures);//make room for 12 texture//
 	glBindTexture(GL_TEXTURE_2D, *textures);
 	glTexImage2D(GL_TEXTURE_2D,//always
-		0,
-		GL_RGB,
-		image->width, image->height,//width and height
-		0,
-		GL_RGB,
-		GL_UNSIGNED_BYTE,
-		image->pixels);// actual pixel data
+				 0,
+				 GL_RGB,
+				 image->width, image->height,//width and height
+				 0,
+				 GL_RGB,
+				 GL_UNSIGNED_BYTE,
+				 image->pixels);// actual pixel data
 	return *textures;
 }
 
@@ -29,12 +29,7 @@ GLuint _textureId9;
 GLuint _textureId10;
 GLuint _textureId11;
 
-
-
-
-
 void initRender() {
-
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_BLEND);//turns on alpha blending
@@ -75,15 +70,8 @@ void initRender() {
 	_textureId11 = loadTexture(image11);
 	delete image11;
 
-
-
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);//clears background colour and put alpha value as 1
-
 }
-
-
-
-
 
 using namespace std;
 
@@ -99,15 +87,15 @@ namespace {
 	//Converts a four-character array to an integer, using little-endian form
 	int toInt(const char* bytes) {
 		return (int)(((unsigned char)bytes[3] << 24) |
-			((unsigned char)bytes[2] << 16) |
-			((unsigned char)bytes[1] << 8) |
-			(unsigned char)bytes[0]);
+					 ((unsigned char)bytes[2] << 16) |
+					 ((unsigned char)bytes[1] << 8) |
+					 (unsigned char)bytes[0]);
 	}
 
 	//Converts a two-character array to a short, using little-endian form
 	short toShort(const char* bytes) {
 		return (short)(((unsigned char)bytes[1] << 8) |
-			(unsigned char)bytes[0]);
+					   (unsigned char)bytes[0]);
 	}
 
 	//Reads the next four bytes as an integer, using little-endian form
@@ -132,7 +120,7 @@ namespace {
 		mutable bool isReleased;
 	public:
 		explicit auto_array(T* array_ = NULL) :
-			array(array_), isReleased(false) {
+				array(array_), isReleased(false) {
 		}
 
 		auto_array(const auto_array<T> &aarray) {
@@ -205,35 +193,35 @@ Image* loadBMP(const char* filename) {
 	int width;
 	int height;
 	switch (headerSize) {
-	case 40:
-		//V3
-		width = readInt(input);
-		height = readInt(input);
-		input.ignore(2);
-		assert(readShort(input) == 24 || !"Image is not 24 bits per pixel");
-		assert(readShort(input) == 0 || !"Image is compressed");
-		break;
-	case 12:
-		//OS/2 V1
-		width = readShort(input);
-		height = readShort(input);
-		input.ignore(2);
-		assert(readShort(input) == 24 || !"Image is not 24 bits per pixel");
-		break;
-	case 64:
-		//OS/2 V2
-		assert(!"Can't load OS/2 V2 bitmaps");
-		break;
-	case 108:
-		//Windows V4
-		assert(!"Can't load Windows V4 bitmaps");
-		break;
-	case 124:
-		//Windows V5
-		assert(!"Can't load Windows V5 bitmaps");
-		break;
-	default:
-		assert(!"Unknown bitmap format");
+		case 40:
+			//V3
+			width = readInt(input);
+			height = readInt(input);
+			input.ignore(2);
+			assert(readShort(input) == 24 || !"Image is not 24 bits per pixel");
+			assert(readShort(input) == 0 || !"Image is compressed");
+			break;
+		case 12:
+			//OS/2 V1
+			width = readShort(input);
+			height = readShort(input);
+			input.ignore(2);
+			assert(readShort(input) == 24 || !"Image is not 24 bits per pixel");
+			break;
+		case 64:
+			//OS/2 V2
+			assert(!"Can't load OS/2 V2 bitmaps");
+			break;
+		case 108:
+			//Windows V4
+			assert(!"Can't load Windows V4 bitmaps");
+			break;
+		case 124:
+			//Windows V5
+			assert(!"Can't load Windows V5 bitmaps");
+			break;
+		default:
+			assert(!"Unknown bitmap format");
 	}
 
 	//Read the data
@@ -249,7 +237,7 @@ Image* loadBMP(const char* filename) {
 		for (int x = 0; x < width; x++) {
 			for (int c = 0; c < 3; c++) {
 				pixels2[3 * (width * y + x) + c] =
-					pixels[bytesPerRow * y + 3 * x + (2 - c)];
+						pixels[bytesPerRow * y + 3 * x + (2 - c)];
 			}
 		}
 	}
@@ -257,12 +245,3 @@ Image* loadBMP(const char* filename) {
 	input.close();
 	return new Image(pixels2.release(), width, height);
 }
-
-
-
-
-
-
-
-
-
