@@ -1,4 +1,4 @@
-void drawObjectsforMirror(){
+void drawObjectsforMirror() {
 
 	drawtable();
 	book1();
@@ -14,7 +14,7 @@ void drawObjectsforMirror(){
 
 }
 
-void drawMirrors(){
+void drawMirrors() {
 	GLint buffers = GL_NONE;	//get current color buffer from being drawn
 	glGetIntegerv(GL_DRAW_BUFFER, &buffers);	// set the clear value
 
@@ -83,7 +83,7 @@ void drawMirrors(){
 	glPushMatrix();	// draw the mirror image
 
 	//this method works however when we move out of the room we see reflections to the back of it aswell
-	for (float k = 2.0f; k < 20; k = k + 2){
+	for (float k = 2.0f; k < 20; k = k + 2) {
 		// invert image about xy plane
 		glScalef(1.0f, 1.0f, -1.0f);
 		glTranslatef(0.0f, 0.0f, k*Rs);

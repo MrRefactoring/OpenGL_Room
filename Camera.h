@@ -35,12 +35,12 @@ void handleSpecialKeypress(int key,//key 2 be pressed
 		z -= lz * fraction;
 		break;
 	}
-	
+
 }
 
-void update(int value){
+void update(int value) {
 	_angle += 1.0f;
-	if (_angle > 360){
+	if (_angle > 360) {
 		_angle -= 360;
 	}
 	glutPostRedisplay();//redraw scene

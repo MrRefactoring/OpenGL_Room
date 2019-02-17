@@ -1053,7 +1053,7 @@ void drawSky()
 	glEnable(GL_BLEND);//turns on alpha blending
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	
+
 	glBegin(GL_QUADS);//normals pointing inwards
 	glNormal3f(0, 1, 0);
 	glColor4f(1, 1, 1, 0.6f);
@@ -1065,8 +1065,8 @@ void drawSky()
 	glVertex3f(Rs, 8.0f, Rs);
 	glTexCoord2f(0, 1);
 	glVertex3f(-Rs, 8.0f, Rs);
-	
-	
+
+
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_BLEND);
@@ -1083,8 +1083,8 @@ void drawWall() //enclosing the walls of the room
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBegin(GL_QUADS);//normals pointing outwards
 	glNormal3f(0, 1, 0);
-	
-	
+
+
 	////left
 	glTexCoord2f(0, 0);
 	glVertex3f(-Rs - wll, -2.0f, -Rs);
@@ -1138,7 +1138,7 @@ void drawWallM() //enclosing the walls of the room
 }
 
 
-void glasscube(){
+void glasscube() {
 	glEnable(GL_TEXTURE_2D);//enabling texture
 
 	glBindTexture(GL_TEXTURE_2D, _textureId1);
@@ -1154,13 +1154,13 @@ void glasscube(){
 
 }
 
-void drawtable(){
+void drawtable() {
 	glEnable(GL_TEXTURE_2D);//enabling texture
 
 	glBindTexture(GL_TEXTURE_2D, _textureId3);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	
+
 	drwatableTop();
 	Firstleg();
 	secondleg();
@@ -1168,10 +1168,10 @@ void drawtable(){
 	fourthleg();
 
 	glDisable(GL_TEXTURE_2D);
-	
+
 }
 
-void book1(){
+void book1() {
 	glEnable(GL_TEXTURE_2D);//enabling texture
 
 	glBindTexture(GL_TEXTURE_2D, _textureId9);
@@ -1180,9 +1180,9 @@ void book1(){
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 	bk1();
-	
+
 	glDisable(GL_TEXTURE_2D);
-	
+
 }
 void book1top()
 {
@@ -1268,7 +1268,7 @@ void book3()
 	bk3();
 
 	glDisable(GL_TEXTURE_2D);
-	
+
 }
 void book3top()
 
@@ -1301,14 +1301,14 @@ void book3top()
 	glPopMatrix();
 }
 
-void pages(){//textures must be added
+void pages() {//textures must be added
 	glEnable(GL_TEXTURE_2D);//enabling texture
 
 	glBindTexture(GL_TEXTURE_2D, _textureId2);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    pgs();
+	pgs();
 	glDisable(GL_TEXTURE_2D);
 
 }

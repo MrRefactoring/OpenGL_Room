@@ -11,7 +11,7 @@
 #include "Mirror.h"
 
 #include <math.h>      
-   
+
 #ifndef M_PI
 #define M_PI 3.14159265
 #endif
@@ -24,8 +24,7 @@ enum {
 
 using namespace std;
 
-void handleResize(int w, int h){
-
+void handleResize(int w, int h) {
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
 
@@ -40,7 +39,7 @@ void handleResize(int w, int h){
 
 }
 
-void drawAllObjects(){
+void drawAllObjects() {
 
 	drawtable();//draw table
 	book1();
@@ -56,26 +55,23 @@ void drawAllObjects(){
 }
 
 
-void drawScene(){
-
-	
+void drawScene() {
 	//clear informatoin from last draw
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	glMatrixMode(GL_MODELVIEW); //switch the drawing perspective
 	glLoadIdentity();//Reset the drawing perspective
 
 	//Camera (View port)
-	gluLookAt( cx, cy, z, cx + lx, 1.0f, z + lz, 0.0f, 1.0f, 0.0f);
+	gluLookAt(cx, cy, z, cx + lx, 1.0f, z + lz, 0.0f, 1.0f, 0.0f);
 	drawMirrors();
 	drawWall();
-glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
-	
+
 	drawAllObjects();
 
-	
 	glCullFace(GL_BACK);// draws back afterwards
-	
+
 	drawAllObjects();
 
 	glDisable(GL_CULL_FACE);
@@ -91,7 +87,7 @@ glEnable(GL_CULL_FACE);
 	/* Reposition the light source. */
 	lightPosition[0] = 20 * cos(lightAngle);
 	lightPosition[1] = 20 * sin(lightAngle);
-	lightPosition[2] =  lightHeight;
+	lightPosition[2] = lightHeight;
 	lightPosition[3] = 0.0;
 
 	shadowMatrix(floorShadow, floorPlane, lightPosition);
@@ -104,8 +100,6 @@ glEnable(GL_CULL_FACE);
 	/* Tell GL new light source position. */
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 
-
-	
 	if (renderShadow) {
 		if (stencilShadow) {
 			/* Draw the floor with stencil value 3.  This helps us only
@@ -116,7 +110,6 @@ glEnable(GL_CULL_FACE);
 			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 		}
 	}
-	
 
 	/* Draw "top" of floor.  Use blending to blend in reflection. */
 	glEnable(GL_BLEND);
@@ -127,16 +120,12 @@ glEnable(GL_CULL_FACE);
 	glDisable(GL_BLEND);
 
 	if (FloorShadow) {
-
 		FloorShadowObj();
 	}
 
 	if (FloorShadow) {
-
 		/* Render the projected shadow. */
-
 		if (stencilShadow) {
-
 			/* Now, only render where stencil is set above 2 (ie, 3 where
 			the top floor is).  Update stencil with 2 where the shadow
 			gets drawn so we don't redraw (and accidently reblend) the
@@ -151,15 +140,15 @@ glEnable(GL_CULL_FACE);
 		if (offsetShadow) {
 			switch (polygonOffsetVersion) {
 			case EXTENSION:
-			#ifdef GL_EXT_polygon_offset
+#ifdef GL_EXT_polygon_offset
 				glEnable(GL_POLYGON_OFFSET_EXT);
 				break;
-		#endif
-			#ifdef GL_VERSION_1_1
+#endif
+#ifdef GL_VERSION_1_1
 			case ONE_DOT_ONE:
 				glEnable(GL_POLYGON_OFFSET_FILL);
 				break;
-		#endif
+#endif
 			case MISSING:
 				break;
 			}
@@ -183,16 +172,16 @@ glEnable(GL_CULL_FACE);
 
 		if (offsetShadow) {
 			switch (polygonOffsetVersion) {
-			#ifdef GL_EXT_polygon_offset
+#ifdef GL_EXT_polygon_offset
 			case EXTENSION:
 				glDisable(GL_POLYGON_OFFSET_EXT);
 				break;
-		#endif
-			#ifdef GL_VERSION_1_1
+#endif
+#ifdef GL_VERSION_1_1
 			case ONE_DOT_ONE:
 				glDisable(GL_POLYGON_OFFSET_FILL);
 				break;
-		#endif
+#endif
 			case MISSING:
 				break;
 			}
@@ -205,16 +194,15 @@ glEnable(GL_CULL_FACE);
 	glPushMatrix();
 	glDisable(GL_LIGHTING);
 	glColor3f(1.0, 1.0, 0.0);
-	
+
 	/* Draw a yellow ball at the light source. */
 	glTranslatef(lightPosition[0], lightPosition[1], lightPosition[2]);
 	glutSolidSphere(3.0, 75, 75);
-	
+
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
 
 	glPopMatrix();
-	
 
 	if (reportSpeed) {
 		glFinish();
@@ -252,11 +240,11 @@ static void controlLights(int value)
 	case M_SHADOWS:
 		renderShadow = 1 - renderShadow;
 		break;
-	
+
 	case M_FloorShadowObj:
 		FloorShadow = 1 - FloorShadow;
 		break;
-	
+
 	case M_STENCIL_SHADOW:
 		stencilShadow = 1 - stencilShadow;
 		break;
@@ -285,7 +273,7 @@ static void visible(int vis)
 	}
 }
 
-void handleKeypress(unsigned char key,int x, int y){ 
+void handleKeypress(unsigned char key, int x, int y) {
 	float fraction = 0.1f; //amount to be changed per press action
 	switch (key)
 	{
@@ -335,20 +323,17 @@ void handleKeypress(unsigned char key,int x, int y){
 
 }
 
-static int supportsOneDotOne(void)
-{
+static int supportsOneDotOne(void) {
 	const char *version;
 	int major, minor;
 
 	version = (char *)glGetString(GL_VERSION);
 	if (sscanf_s(version, "%d.%d", &major, &minor) == 2)
 		return major >= 1 && minor >= 1;
-	return 0;           
+	return 0;
 }
 
-int main(int argc, char* argv[]){
-
-
+int main(int argc, char* argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_STENCIL | GLUT_MULTISAMPLE);
 	glutInitWindowSize(600, 600);//size of window
@@ -387,7 +372,7 @@ int main(int argc, char* argv[]){
 	else
 #endif
 
-	glEnable(GL_CULL_FACE);
+		glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 
 	glLineWidth(3.0);
@@ -398,7 +383,6 @@ int main(int argc, char* argv[]){
 		/* Z near */ 20.0f, /* Z far */ 100.0f);
 	glMatrixMode(GL_MODELVIEW);
 
-
 	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, 1);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor);
 	glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.1f);
@@ -406,20 +390,19 @@ int main(int argc, char* argv[]){
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHTING);
 
-findPlane(floorPlane, floorVertices[1], floorVertices[2], floorVertices[3]);
+	findPlane(floorPlane, floorVertices[1], floorVertices[2], floorVertices[3]);
 
 	glutSpecialFunc(handleSpecialKeypress);// camera rotation
 	glutReshapeFunc(handleResize);
 	glutTimerFunc(25, update, 0);
 
-	cout << "press Q, W, E to change positions of static/directional camera " ;
+	cout << "press Q, W, E to change positions of static/directional camera ";
 	cout << "\n ";
 	cout << "press R to come back to default dynamic camera";
 	cout << "\n";
 	cout << "use arrow keys to move default dynamic camera";
 	cout << "\n";
 	cout << "right click to get the menu ";
-	glutMainLoop(); 
-	return 0; 
-
+	glutMainLoop();
+	return 0;
 }

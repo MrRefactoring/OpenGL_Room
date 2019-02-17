@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <fstream>
 
-GLuint loadTexture(Image* image){
+GLuint loadTexture(Image* image) {
 	GLuint *textures = new GLuint[11];//
 	glGenTextures(12, textures);//make room for 12 texture//
 	glBindTexture(GL_TEXTURE_2D, *textures);
@@ -33,7 +33,7 @@ GLuint _textureId11;
 
 
 
-void initRender(){
+void initRender() {
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_COLOR_MATERIAL);
@@ -75,8 +75,8 @@ void initRender(){
 	_textureId11 = loadTexture(image11);
 	delete image11;
 
-	
-	
+
+
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);//clears background colour and put alpha value as 1
 
 }
