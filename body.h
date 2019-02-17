@@ -35,8 +35,6 @@ void drwatableTop()
 
     glBegin(GL_QUADS);
     // bottom: normal pointing outwards
-    // glNormal3f(0, 1, 0);
-    // glNormal3f(0, -1, 0);
     glTexCoord2f(min, min);
     glVertex3f(-Tw, Th, Tl);
     glTexCoord2f(max, min);
@@ -48,7 +46,6 @@ void drwatableTop()
     // Top:normal pointing outwards
 
     // front:normal pointing outwards
-    // glNormal3f(0, 0, 1);
     glTexCoord2f(min, min);
     glVertex3f(-Tw, Th + Tt, Tl);
     glTexCoord2f(max, min);
@@ -58,7 +55,6 @@ void drwatableTop()
     glTexCoord2f(min, max);
     glVertex3f(Tw, Th + Tt, Tl);
     // back:normal pointing outwards
-    // glNormal3f(0, 0, -1);
     glTexCoord2f(min, min);
     glVertex3f(Tw, Th + Tt, -Tl);
     glTexCoord2f(max, min);
@@ -68,7 +64,6 @@ void drwatableTop()
     glTexCoord2f(min, max);
     glVertex3f(-Tw, Th + Tt, -Tl);
     // right:normal pointing outwards
-    // glNormal3f(1, 0, 0);
     glTexCoord2f(min, min);
     glVertex3f(Tw, Th + Tt, Tl);
     glTexCoord2f(max, min);
@@ -78,7 +73,6 @@ void drwatableTop()
     glTexCoord2f(min, max);
     glVertex3f(Tw, Th + Tt, -Tl);
     // left:normal pointing outwards
-    // glNormal3f(-1, 0, 0);
     glTexCoord2f(max, max);
     glVertex3f(-Tw, Th + Tt, Tl);
     glTexCoord2f(min, max);
@@ -89,7 +83,6 @@ void drwatableTop()
     glVertex3f(-Tw, Th, Tl);
 
     // top
-    // glNormal3f(0, 1, 0);
     glTexCoord2f(min, min);
     glVertex3f(-Tw, Th + Tt, Tl);
     glTexCoord2f(min, max);
@@ -537,7 +530,6 @@ void bk1()
     glTexCoord2f(min, max);
     glVertex3f(-Bw - Bb, Bh + Bt + Btt, -Bl);
     glEnd();
-    // glDisable(GL_TEXTURE_2D);
     glPopMatrix();//5
 }
 void bk2()
@@ -711,7 +703,6 @@ void bk2()
     glTexCoord2f(min, max);
     glVertex3f(-Bw - Bb, Bh + Bt + Btt, -Bl);
     glEnd();
-    // glDisable(GL_TEXTURE_2D);
     glPopMatrix(); // 5
 }
 void bk3()
@@ -885,9 +876,7 @@ void bk3()
     glTexCoord2f(min, max);
     glVertex3f(-Bw - Bb, Bh + Bt + Btt3, -Bl);
     glEnd();
-    //glDisable(GL_TEXTURE_2D);
     glPopMatrix();//5
-
 }
 
 void pgs()
@@ -1004,7 +993,6 @@ void pgs()
 }
 
 static void FloorShadowObj(void)
-
 {
     drwatableTop();
     Firstleg();
@@ -1016,7 +1004,6 @@ static void FloorShadowObj(void)
     bk2();
     bk3();
     pgs();
-
 }
 
 static GLfloat floorVertices[4][3] = {
@@ -1030,7 +1017,6 @@ static GLfloat floorVertices[4][3] = {
 
 static void drawFloor(void)
 {
-
     glBegin(GL_QUADS);
     glNormal3f(0, 1, 0);
     glColor3f(0.90f, 0.90f, 0.90f);
@@ -1039,7 +1025,6 @@ static void drawFloor(void)
     glVertex3fv(floorVertices[2]);
     glVertex3fv(floorVertices[3]);
     glEnd();
-
 }
 
 static GLfloat floorPlane[4];
@@ -1138,7 +1123,6 @@ void drawWallM() //enclosing the walls of the room
     glDisable(GL_TEXTURE_2D);
 }
 
-
 void glasscube() {
     glEnable(GL_TEXTURE_2D);//enabling texture
 
@@ -1169,7 +1153,6 @@ void drawtable() {
     fourthleg();
 
     glDisable(GL_TEXTURE_2D);
-
 }
 
 void book1() {
@@ -1183,7 +1166,6 @@ void book1() {
     bk1();
 
     glDisable(GL_TEXTURE_2D);
-
 }
 void book1top()
 {
@@ -1225,8 +1207,8 @@ void book2()
     bk2();
 
     glDisable(GL_TEXTURE_2D);
-
 }
+
 void book2top()
 
 {
@@ -1236,7 +1218,6 @@ void book2top()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
 
     glPushMatrix(); //3
     glTranslatef(-1.0f, -2.0f + B2h + Btt, 2.0f);// move up to lie above bottom cover
@@ -1269,8 +1250,8 @@ void book3()
     bk3();
 
     glDisable(GL_TEXTURE_2D);
-
 }
+
 void book3top()
 
 
@@ -1281,7 +1262,6 @@ void book3top()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
 
     glPushMatrix(); //3
     glTranslatef(-1.0f, -2.0f + B3h + Btt3, 2.0f);// move up to lie above bottom cover
@@ -1302,8 +1282,8 @@ void book3top()
     glPopMatrix();
 }
 
-void pages() {//textures must be added
-    glEnable(GL_TEXTURE_2D);//enabling texture
+void pages() { //textures must be added
+    glEnable(GL_TEXTURE_2D); //enabling texture
 
     glBindTexture(GL_TEXTURE_2D, _textureId2);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -1313,6 +1293,3 @@ void pages() {//textures must be added
     glDisable(GL_TEXTURE_2D);
 
 }
-
-//////////////////////////////////////////////////////////////////////
-

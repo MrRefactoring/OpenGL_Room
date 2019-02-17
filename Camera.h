@@ -34,7 +34,6 @@ void handleSpecialKeypress(int key,//key 2 be pressed
 			z -= lz * fraction;
 			break;
 	}
-
 }
 
 void update(int value) {
