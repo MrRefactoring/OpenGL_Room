@@ -36,37 +36,37 @@ void initRender() {
 	glEnable(GL_NORMALIZE);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);// to see the blending
 
-	Image* image1 = loadBMP("cake.bmp");
+	Image* image1 = loadBMP("assets/cake.bmp");
 	_textureId1 = loadTexture(image1);
 	delete image1;
-	Image* image2 = loadBMP("pages_2.bmp");
+	Image* image2 = loadBMP("assets/pages_2.bmp");
 	_textureId2 = loadTexture(image2);
 	delete image2;
-	Image* image3 = loadBMP("wood.bmp");
+	Image* image3 = loadBMP("assets/wood.bmp");
 	_textureId3 = loadTexture(image3);
 	delete image3;
-	Image* image4 = loadBMP("cover.bmp");
+	Image* image4 = loadBMP("assets/cover.bmp");
 	_textureId4 = loadTexture(image4);
 	delete image4;
-	Image* image5 = loadBMP("cvr.bmp");
+	Image* image5 = loadBMP("assets/cvr.bmp");
 	_textureId5 = loadTexture(image5);
 	delete image5;
-	Image* image6 = loadBMP("2cover.bmp");
+	Image* image6 = loadBMP("assets/2cover.bmp");
 	_textureId6 = loadTexture(image6);
 	delete image6;
-	Image* image7 = loadBMP("2cvr.bmp");
+	Image* image7 = loadBMP("assets/2cvr.bmp");
 	_textureId7 = loadTexture(image7);
 	delete image7;
-	Image* image8 = loadBMP("3cover.bmp");
+	Image* image8 = loadBMP("assets/3cover.bmp");
 	_textureId8 = loadTexture(image8);
 	delete image8;
-	Image* image9 = loadBMP("3cvr.bmp");
+	Image* image9 = loadBMP("assets/3cvr.bmp");
 	_textureId9 = loadTexture(image9);
 	delete image9;
-	Image* image10 = loadBMP("wall.bmp");
+	Image* image10 = loadBMP("assets/wall.bmp");
 	_textureId10 = loadTexture(image10);
 	delete image10;
-	Image* image11 = loadBMP("sky.bmp");
+	Image* image11 = loadBMP("assets/sky.bmp");
 	_textureId11 = loadTexture(image11);
 	delete image11;
 

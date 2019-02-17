@@ -84,6 +84,19 @@
     <ClInclude Include="Shadow.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\2cover.bmp" />
+    <Image Include="assets\2cvr.bmp" />
+    <Image Include="assets\3cover.bmp" />
+    <Image Include="assets\3cvr.bmp" />
+    <Image Include="assets\cake.bmp" />
+    <Image Include="assets\cover.bmp" />
+    <Image Include="assets\cvr.bmp" />
+    <Image Include="assets\floor.bmp" />
+    <Image Include="assets\sky.bmp" />
+    <Image Include="assets\wall.bmp" />
+    <Image Include="assets\wood.bmp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets" Condition="Exists('packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" />
